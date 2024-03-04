@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nuaodisha-412805",
+  "private_key_id": "73cabfd6949356d67e7637e12e113e679334bfda",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDuXGy+6P6oJ+eu\n+l5UwhxiwwuHc/XsgKn6vs69Lok2D5X6WKX+D3pj6cmSAuGJ/QQat2JFVOTtRGmc\nBn0LG8a1lnxA267tHXxYLwCrrQ7gqjLybiFNJ/DeyTCI9TKDH5TWSOInCy9cRsCr\nFyPSYJTEpmDxgV9S6CE8U4lBBHro6B2ip5yAN42wIS8llrsjmTWhHtjx8QP/QKna\ne/Dsf5OrajboF8T9mFvtqhjejpmZdI+GjeJeMWSMP6XOjPYXXtzWtEr9Eoosig6e\n0hYPHFNUOdib233MFlLoD4+GwnIT9lkaGHSEvCBbXo2tJ5mFRUkEJGVdW+QeZ+3j\nNLhqwJu9AgMBAAECggEAI7/acn6k9Qj5I2H7JGixk7FvqPrgIz6/37Le9HpGi4Rm\naNQDX1mocFRHzl2ewJChXTVsaHwdUqWsVkGV3wTlNmZxz9NzBq6hr+MqzVTJErKM\nLhaM6ZLIOk2/+QaXcxmZO9NWEeeITKVy76Yqkfq4zU6r4wTVjGxy0aawwv7eRVCC\nwT7ngrQtk11sBUf1ecG+nWP97QHQw3Kk2kiyKKW2TbutmID7PrhnljfnfZj4CxAt\nEF+/2SunXK0kZsnljXTwTzeLa3LrHQZu5BAsLUqN1906ALkIaPB0kLdZoUA2LUK3\nWQBtIDyq4ojo01sxa3Btah6lZk3ZwU1dG9EI0ZXwiQKBgQD+usfhg+44GA0OwpF/\nR+UP1mZv34aZ/mbaAATS1knZmPEa8gxFmT/hkhh0DYyi4gOLJj4oci8fwseLHiRc\n2his+0hJuVNLuX7uOiz5qgXlx6DkWrIYYxOuO1wil3CEKna2clJ4mdx1Gzo7zVlo\nX+scmmQk4YY1ctgOLf/DWPwuyQKBgQDvjL7woNar9rZPVxKt4gOJBnUnnXZNjj5U\nhutKnUFMaY3WuRd9wkj12HJxfSAOA0IoyrwoWoQ7IPqyahSBHNyblkboPgp8SZro\nl6o3R80CyZymQH8jbThVldr4z9YLBI4os6suQ6Be4CwmX2XjhCVdeT1PxEqEcPH+\nPZYWaPb7VQKBgEAI/lRv0QPi7+1k9iSUEz5O/INlIrY1oO9uj8fcvMXpz7qhXHpm\nkwuGqYULHu6XeKKTY47RXY1TbsxHMIbzAL8DkGGQKCNiJ0mF8GZ22nKwI38kWZ8N\n0RW8sGW1wkBHWH528MqGi0gZJyN/dNlrO3R+T2yCETYAf9XYtHIMPaEZAoGADCR8\nQUJF322gDCGDxuCgAUAcjCeFKaU+L5avMpcKCk+HawzyzeMdQ6j3FB2dlFhB8ENm\nij0cWsrvKkAKTgkifZh+e6M5cNdiTMvzSt4O3EdP83VtfGQ66Muxz87pMKHIevOw\nh6XR6T0/v6oyRfga1MQigXqXtGLtQU/p3bTwYAkCgYEA88zOMYYYglD6c9xPwQGY\n4SRKJFQHVEZ29XLxAfnDIzeUH0JszEyc3HJk03Sb4Mdtl4lmMPGoybiXtPnAn69u\niPtdULiHYw8OUPdtwymLtfNHGP/OL7hr/f+1nz564QV2iozbe1FpGweJEpUANeSt\ngrg3QhcHzW1OJpPJOYiStEU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "nua-odisha@nuaodisha-412805.iam.gserviceaccount.com",
+  "client_id": "110034698709200579427",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nua-odisha%40nuaodisha-412805.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

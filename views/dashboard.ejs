@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reelix</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+</head>
+
+<body>
+    <div id="loader" style="display: none">
+        <svg id="loading">
+            <g>
+                <path class="ld-l" fill="#39C0C4" d="M43.6,33.2h9.2V35H41.6V15.2h2V33.2z" />
+                <path class="ld-o" fill="#39C0C4" d="M74.7,25.1c0,1.5-0.3,2.9-0.8,4.2c-0.5,1.3-1.2,2.4-2.2,3.3c-0.9,0.9-2,1.6-3.3,2.2
+                        c-1.3,0.5-2.6,0.8-4.1,0.8s-2.8-0.3-4.1-0.8c-1.3-0.5-2.4-1.2-3.3-2.2s-1.6-2-2.2-3.3C54.3,28,54,26.6,54,25.1s0.3-2.9,0.8-4.2
+                        c0.5-1.3,1.2-2.4,2.2-3.3s2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8s2.8,0.3,4.1,0.8c1.3,0.5,2.4,1.2,3.3,2.2c0.9,0.9,1.6,2,2.2,3.3
+                        C74.4,22.2,74.7,23.6,74.7,25.1z M72.5,25.1c0-1.2-0.2-2.3-0.6-3.3c-0.4-1-0.9-2-1.6-2.8c-0.7-0.8-1.6-1.4-2.6-1.9
+                        c-1-0.5-2.2-0.7-3.4-0.7c-1.3,0-2.4,0.2-3.4,0.7c-1,0.5-1.9,1.1-2.6,1.9c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3
+                        c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9c1,0.5,2.2,0.7,3.4,0.7c1.3,0,2.4-0.2,3.4-0.7
+                        c1-0.5,1.9-1.1,2.6-1.9c0.7-0.8,1.3-1.7,1.6-2.7C72.4,27.4,72.5,26.3,72.5,25.1z" />
+                <path class="ld-a" fill="#39C0C4"
+                    d="M78.2,35H76l8.6-19.8h2L95.1,35h-2.2l-2.2-5.2H80.4L78.2,35z M81.1,27.9h8.7l-4.4-10.5L81.1,27.9z" />
+                <path class="ld-d" fill="#39C0C4" d="M98,15.2h6.6c1.2,0,2.5,0.2,3.7,0.6c1.2,0.4,2.4,1,3.4,1.9c1,0.8,1.8,1.9,2.4,3.1s0.9,2.7,0.9,4.3
+                        c0,1.7-0.3,3.1-0.9,4.3s-1.4,2.3-2.4,3.1c-1,0.8-2.1,1.5-3.4,1.9c-1.2,0.4-2.5,0.6-3.7,0.6H98V15.2z M100,33.2h4
+                        c1.5,0,2.8-0.2,3.9-0.7c1.1-0.5,2-1.1,2.8-1.8c0.7-0.8,1.3-1.6,1.6-2.6s0.5-2,0.5-3c0-1-0.2-2-0.5-3c-0.4-1-0.9-1.8-1.6-2.6
+                        c-0.7-0.8-1.6-1.4-2.8-1.8c-1.1-0.5-2.4-0.7-3.9-0.7h-4V33.2z" />
+                <path class="ld-i" fill="#39C0C4" d="M121.2,35h-2V15.2h2V35z" />
+                <path class="ld-n" fill="#39C0C4"
+                    d="M140.5,32.1L140.5,32.1l0.1-16.9h2V35h-2.5l-11.5-17.1h-0.1V35h-2V15.2h2.5L140.5,32.1z" />
+                <path class="ld-g" fill="#39C0C4"
+                    d="M162.9,18.8c-0.7-0.7-1.5-1.3-2.5-1.7c-1-0.4-2-0.6-3.3-0.6c-1.3,0-2.4,0.2-3.4,0.7s-1.9,1.1-2.6,1.9
+                        c-0.7,0.8-1.3,1.7-1.6,2.8c-0.4,1-0.6,2.1-0.6,3.3c0,1.2,0.2,2.3,0.6,3.3c0.4,1,0.9,2,1.6,2.7c0.7,0.8,1.6,1.4,2.6,1.9
+                        s2.2,0.7,3.4,0.7c1.1,0,2.1-0.1,3.1-0.4c0.9-0.2,1.7-0.5,2.3-0.9v-6h-4.6v-1.8h6.6v9c-1.1,0.7-2.2,1.1-3.5,1.5
+                        c-1.3,0.3-2.5,0.5-3.9,0.5c-1.5,0-2.9-0.3-4.1-0.8s-2.4-1.2-3.3-2.2c-0.9-0.9-1.6-2-2.1-3.3s-0.8-2.7-0.8-4.2s0.3-2.9,0.8-4.2
+                        c0.5-1.3,1.2-2.4,2.2-3.3c0.9-0.9,2-1.6,3.3-2.2c1.3-0.5,2.6-0.8,4.1-0.8c1.6,0,3,0.2,4.1,0.7s2.2,1.1,3,2L162.9,18.8z" />
+            </g>
+        </svg>
+
+
+        <svg width='182px' height='182px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+            preserveAspectRatio="xMidYMid" class="uil-ripple">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <g>
+                <animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1"
+                    values="1;1;0"></animate>
+                <circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round">
+                    <animate attributeName="r" dur="4s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1"
+                        values="0;22;44"></animate>
+                </circle>
+            </g>
+            <g>
+                <animate attributeName="opacity" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1"
+                    values="1;1;0"></animate>
+                <circle cx="50" cy="50" r="40" stroke="#eeeeee" fill="none" stroke-width="2" stroke-linecap="round">
+                    <animate attributeName="r" dur="4s" repeatCount="indefinite" begin="2s" keyTimes="0;0.33;1"
+                        values="0;22;44"></animate>
+                </circle>
+            </g>
+        </svg>
+    </div>
+    <nav class="navbar sticky-header p-0">
+        <div class="col-xl-12 d-flex justify-content-between align-items-center py-2">
+            <a class="navbar-brand d-flex align-items-center" href="/dashboard">
+                <img src="/img/team360.png" width="130" class="img-fluid" alt="">
+            </a>
+            <!-- <h3> Welcome to Reelix Dashboard</h3> -->
+            <div class="btn-group profile-name">
+
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img src="/img/user.jpg" class="img-fluid user-img" alt="">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-right">
+                    <form action="/logout" method="post">
+                        <button type="submit" class="dropdown-item" type="button" id="signout">
+                            <i class="fas fa-power-off"></i>
+                            Sign out
+                        </button>
+                    </form>
+                    <% if (userRole==="super-admin" ) { %>
+                        <form action="/refreshdata" method="post">
+
+                            <button type="submit" class="dropdown-item">Refresh Data</button>
+                        </form>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 p-0">
+
+            <form action="/dashboard" method="post" class="filters">
+
+                <div>
+                    <label for="projects" class="filter-label">Select Project</label>
+                    <select name="projects" id="projects" class="select-item">
+                        <option value="ALL">ALL</option>
+                        <% for (i=0; i < projects.length; i++){ %>
+                            <option value="<%= projects[i] %>">
+                                <%= projects[i] %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="sub-projects" class="filter-label">Select Sub-Project</label>
+                    <select name="sub-projects" id="sub-projects" class="select-item">
+                        <option value="ALL">ALL</option>
+                        <% for (i=0; i < metaData.length; i++){ %>
+                            <option value="<%= metaData[i].subProject %>">
+                                <%= metaData[i].subProject %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <div style="display: none;">
+                    <label for="dates" class="filter-label">Posting Date</label>
+                    <input style="width: 200px;" type="text" name="dates" id="dates" value="<%= dates %>" readonly>
+                </div>
+                <div>
+                    <label for="campaign-month" class="filter-label">Select Campaign-Month</label>
+                    <select name="campaign-month" id="campaign-month" class="select-item">
+                        <option value="ALL">ALL</option>
+                        <% for (i=0; i < campaignNames.length; i++){ %>
+                            <option value="<%= campaignNames[i] %>">
+                                <%= campaignNames[i] %>
+                            </option>
+                            <% } %>
+                    </select>
+                </div>
+                <input type="text" name="isDetailed" hidden value="true">
+
+                <button type="submit" class="btn btn-success">Apply</button>
+                <a class="btn btn-download" id="btn-download">Download Summary</a>
+            </form>
+
+
+        </div>
+    </nav>
+
+    <div id="my-container" class="my-container">
+        <section class="data-table-section main-section">
+            <div class="container-fluid">
+                <!-- filter section starts-->
+
+                <div id="reportContainer">
+
+                    <!-- summary data -->
+                    <div class="container-fluid">
+                        <h1 class="overviewTableHeading mt-3">
+                            <%= selectedProject==="ALL" ? "Overall" : selectedProject %>
+                                <%= selectedSheetName==="ALL" ? "" : "(" + selectedSheetName + ")" %> Summary
+                        </h1>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="summary-card reel-bg">
+                                            <img src="/img/reel-icon.svg" class="img-fluid " alt="">
+                                            <div class="summary-detail">
+                                                <p>Total Posts : </p>
+                                                <h1>
+                                                    <%= summaryData.deliverables.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="summary-card followers-bg">
+                                            <img src="/img/follower-icon.svg" class="img-fluid " alt="">
+                                            <div class="summary-detail">
+                                                <p>Total Followers :</p>
+                                                <h1>
+                                                    <%= summaryData.followers.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="summary-card views-bg">
+                                            <img src="/img/views-icon.svg" class="img-fluid " alt="">
+                                            <div class="summary-detail">
+                                                <p>Total Views : </p>
+                                                <h1>
+                                                    <%= summaryData.views.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-lg-4">
+                                        <div class="summary-card interactions-bg">
+                                            <img src="/img/like-icon.svg" class="img-fluid" alt="">
+                                            <div class="summary-detail">
+                                                <p>Total Likes : </p>
+                                                <h1>
+                                                    <%= summaryData.likes.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="summary-card engagement-bg">
+                                            <img src="/img/like-icon.svg" class="img-fluid" alt="">
+                                            <div class="summary-detail">
+                                                <p>Total Comments </p>
+                                                <h1>
+                                                    <%= summaryData.comments.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="summary-card engagement-bg">
+                                            <img src="/img/like-icon.svg" class="img-fluid" alt="">
+                                            <div class="summary-detail">
+                                                <p>Total Reach </p>
+                                                <h1>
+                                                    <%= summaryData.reach.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+                    </div>
+                    <!-- filter section ends -->
+
+                    <!-- chart data -->
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <h1 class="overviewTableHeading mt-3 ml-3">Performance Growth</h1>
+
+                            <canvas id="growthChart" class="col-6" style="width:100%;max-width:700px"></canvas>
+                        </div>
+                        <div class="col-lg-6">
+                            <h1 class="overviewTableHeading mt-3">Top Performing Posts</h1>
+                            <span>Click on slice to see post</span>
+
+                            <canvas id="pieChart" class="col-6" style="width:100%;max-width:700px"></canvas>
+                        </div>
+                    </div>
+
+
+                    <!--overview table -->
+                    <% if (!isDetailed) { %>
+
+                        <div class="col-md-12 ml-sm-auto col-lg-12 px-md-12">
+                            <h1 class="overviewTableHeading">
+                                <%= selectedProject==="All" ? "All" : selectedProject %> Project Overview
+                            </h1>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered overview-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">Project</th>
+                                         
+                                            <th scope="col">Total Posts</th>
+                                            <th scope="col">Total Followers</th>
+                                            <th scope="col">Total Views</th>
+                                            <th scope="col">Total Likes</th>
+                                            <th scope="col">Total Comments</th>
+                                            <th scope="col">Total Reach</th>
+                                            
+                                            <!-- <th scope="col">Total Interactions</th>
+                                            <th scope="col">Avg Engagement Rate</th> -->
+                                          
+                                            <th scope="col">Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% for (i=0; i < overviewData.length-1; i++){ %>
+                                            <tr>
+                                                <td scope="row">
+                                                    <span>
+                                                        <%= i + 1 %>
+                                                    </span>
+
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[i].project %>
+                                                </td>
+                                               
+                                                <td>
+                                                    <%= overviewData[i].deliverables.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[i].followers.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[i].views.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                               
+                                                <td>
+                                                    <%= overviewData[i].likes.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[i].comments.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[i].reach.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                                </td>
+                                                <td>
+                                                    <form action="/dashboard" method="post">
+                                                        <input type="text" name="projects" hidden
+                                                            value="<%= overviewData[i].project %>">
+                                                        <input type="text" name="sub-projects" hidden value="ALL">
+                                                        <input type="text" name="isDetailed" hidden value="true">
+
+                                                        <button class="btn btn-success" type="submit"
+                                                            id="detailButton">View
+                                                            Details</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                            <!-- reporting data table -->
+                            <div class="col-md-12 ml-sm-auto col-lg-12 px-md-14  reportingData" id="reportingData">
+                                <div class="row images">
+                                    <img class="img-fluid" src="/img/upsidedown.png" alt="">
+                                    <img class="img-fluid" src="/img/team360.png" alt="">
+                                </div>
+                                <div class="heading">
+                                    <h1>INFLUENCERS ENGAGEMENT SUMMARY</h1>
+                                    <p>
+                                        <%= selectedProject==="ALL" ? "Overall" : selectedProject %>
+                                    </p>
+                                </div>
+                                <div></div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered report-table">
+                                        <thead>
+                                            <tr>
+
+                                                <th scope="col">Project Name</th>
+                                                <th scope="col">Deliverables</th>
+                                                <th scope="col">Followers</th>
+                                                <th scope="col">Views</th>
+                                                <th scope="col">Likes</th>
+                                                <th scope="col">Comments</th>
+                                                <th scope="col">Reach</th>
+                                             
+                                              
+                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.subProject %>
+                                                </td>
+
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.deliverables.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.followers.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.views.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.likes.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.comments.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                <td>
+                                                    <%= overviewData[overviewData.length-1]?.reach.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                        ) %>
+                                                </td>
+                                                
+                                            </tr>
+                                            <% for (i=0; i < overviewData.length-1; i++){ %>
+                                                <tr>
+
+                                                    <td>
+                                                        <%= overviewData[i].subProject %>
+                                                    </td>
+
+                                                    <td>
+                                                        <%= overviewData[i].deliverables.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                            ) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= overviewData[i].followers.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                            ) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= overviewData[i].views.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                            ) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= overviewData[i].likes.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                            ) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= overviewData[i].comments.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                            ) %>
+                                                    </td>
+                                                    <td>
+                                                        <%= overviewData[i].reach.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                            ) %>
+                                                    </td>
+                                                 
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                </div>
+
+
+                <!--detailed table -->
+                <% if (isDetailed) { %>
+                    <div class="col-md-12 ml-sm-auto col-lg-12 px-md-12">
+                        <h1 class="overviewTableHeading mt-3">
+                            <%= selectedProject==="ALL" ? "Overall" : selectedProject %>
+                                <%= selectedSheetName === "ALL" ? "" : "(" + selectedSheetName + ")" %> Details
+                        </h1>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered detailed-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Posting Date</th>
+                                        <th scope="col">Total Followers</th>
+                                        <th scope="col">Deliverable</th>
+                                        <th scope="col">Total Views</th>
+                                        <th scope="col">Total Likes</th>
+                                        <th scope="col">Total Comments</th>
+                                        <th scope="col">Total Reach</th>
+                                      
+                                        <th scope="col">Enagement Rate</th>
+                                       
+                                        <th scope="col">Profile URL</th>
+                                        <th scope="col">Post URL</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (i=0; i < insights.length ; i++){ %>
+                                        <tr>
+                                            <td scope="row">
+                                                <span>
+                                                    <%= i + 1 %>
+                                                </span>
+
+                                            </td>
+                                            <td>
+                                                <%= insights[i].name %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].postingDate %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].followers.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].deliverable %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].views.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1," )
+                                                    %>
+                                            </td>
+                                            
+
+                                            <td>
+                                                <%= insights[i].likes.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].comments.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].reach.toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,"
+                                                    ) %>
+                                            </td>
+                                            <td>
+                                                <%= insights[i].engagement.toFixed(2)
+                                                     %> %
+                                            </td>
+                                            <td>
+                                                <a href="<%= insights[i].profileLink %>" target="_blank">Visit
+                                                    Profile</a>
+                                            </td>
+                                            <td>
+                                                <a href="<%= insights[i].contentLink %>" target="_blank">See <%=
+                                                        insights[i].deliverable %></a>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <% } %>
+            </div>
+    </div>
+    </section>
+
+    </div>
+
+    <script>
+        let metaData = JSON.parse(`<%- JSON.stringify(metaData) %>`)
+        let growthDataArray = JSON.parse(`<%- JSON.stringify(growthDataArray) %>`)
+        let sortedByViewsArray = JSON.parse(`<%- JSON.stringify(sortedByViewsArray) %>`)
+        let selectedProject = "<%- selectedProject %>"
+        let selectedSheetName = "<%- selectedSheetName %>"
+        let selectedCampaignMonth = '<%- selectedCampaignMonth %>'
+    </script>
+    <script>
+        const forms = document.getElementsByTagName('form')
+
+        for (let i = 0; i < forms.length; i++) {
+            forms[i].addEventListener('submit', (e) => {
+                document.getElementById('my-container').style.display = 'none'
+                document.getElementById('loader').style.display = 'flex'
+            })
+        }
+    </script>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

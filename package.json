@@ -1,0 +1,35 @@
+{
+    "name": "nua-odisha",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+        "dev": "nodemon -e .ejs,.js app.js",
+        "start": "node app.js"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.24.0",
+        "bcrypt": "^5.0.1",
+        "connect-mongodb-session": "^3.1.1",
+        "cron": "^3.1.6",
+        "dotenv": "^10.0.0",
+        "ejs": "^3.1.6",
+        "excel4node": "^1.7.2",
+        "exceljs": "^4.4.0",
+        "express": "^4.17.1",
+        "express-flash": "^0.0.2",
+        "express-session": "^1.17.2",
+        "google-auth-library": "^9.6.0",
+        "google-spreadsheet": "^4.1.1",
+        "googleapis": "^131.0.0",
+        "moment": "^2.29.4",
+        "moment-timezone": "^0.5.43",
+        "mongoose": "^6.0.13",
+        "passport": "^0.6.0",
+        "passport-local": "^1.0.0",
+        "winston": "^3.3.3"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
