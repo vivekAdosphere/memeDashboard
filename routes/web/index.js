@@ -53,8 +53,8 @@ router.post('/login', async (req, res, next) => {
                     return next(err)
                 }
                 req.session.selectedProject = 'ALL'
-                req.session.selectedSheetName = 'ALL'
-                req.session.selectedCampaignMonth = 'ALL'
+                // req.session.selectedSheetName = 'ALL'
+                req.session.selectedCampaingName = 'ALL'
                 req.session.isDetailed = false
                 req.session.role = user.role
                 return res.redirect(`/dashboard/1`)
@@ -74,16 +74,16 @@ router.get('/dashboard', auth, (req, res) => {
 router.post('/dashboard', async (req, res) => {
     const dates = req.body.dates || ''
     const selectedProject = req.body.projects
-    const selectedSheetName = req.body['sub-projects']
-    const selectedCampaignMonth = req.body['campaign-month'] || 'ALL'
+    // const selectedSheetName = req.body['sub-projects']
+    const selectedCampaignName = req.body['campaign-month'] || 'ALL'
 
     let isDetailed = Boolean(req.body.isDetailed)
     if (selectedProject === 'ALL') {
         isDetailed = false
     }
     req.session.selectedProject = selectedProject
-    req.session.selectedSheetName = selectedSheetName
-    req.session.selectedCampaignMonth = selectedCampaignMonth
+    // req.session.selectedSheetName = selectedSheetName
+    req.session.selectedCampaignName = selectedCampaignName
     req.session.isDetailed = isDetailed
     req.session.dates = dates
 
@@ -97,12 +97,12 @@ router.get('/dashboard/:page', auth, async (req, res) => {
         const currentPage = req.params.page || 1
 
         let selectedProject = req.session.selectedProject
-        let selectedSheetName = req.session.selectedSheetName
+        // let selectedSheetName = req.session.selectedSheetName
         let isDetailed = req.session.isDetailed
-        let selectedCampaignMonth = req.session.selectedCampaignMonth
+        let selectedCampaignName = req.session.selectedCampaignName
         let dates = req.session.dates
         let userRole = req.session.role
-        console.log(dates)
+
         // checking if user is entering string
         if (isNaN(currentPage)) {
             return res.redirect(`/dashboard/1`)
@@ -120,7 +120,7 @@ router.get('/dashboard/:page', auth, async (req, res) => {
         const { metaData, projects } = readMetaDataFromExcel(workbook, 'Metadata')
 
         // Reading Insights
-        const filter = { projectName: selectedProject, subProjectName: selectedSheetName, selectedCampaignMonth, dates }
+        const filter = { projectName: selectedProject, selectedCampaignName, dates }
 
         let { campaignNames, summaryData, insights, growthDataArray, sortedByViewsArray } = await readInsightsDataFromExcel(
             workbook,
@@ -138,12 +138,12 @@ router.get('/dashboard/:page', auth, async (req, res) => {
             overviewData,
             projects,
             dates,
-            selectedCampaignMonth,
+            selectedCampaignName,
             campaignNames,
             isDetailed,
             insights,
             selectedProject,
-            selectedSheetName,
+
             growthDataArray,
             sortedByViewsArray,
             userRole

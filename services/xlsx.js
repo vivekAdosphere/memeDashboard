@@ -41,13 +41,11 @@ exports.readMetaDataFromExcel = (workbook, sheetName) => {
         worksheet.eachRow((row, rowNumber) => {
             if (rowNumber > 1) {
                 const project = row.getCell(1).value.toString().trim()
-                const subProject = row.getCell(2).value.toString().trim()
 
                 // Skip header row
                 metaData.push({
                     id: rowNumber - 1,
-                    project,
-                    subProject
+                    project
                 })
 
                 if (!projects.includes(project)) {
@@ -67,16 +65,16 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
         //data to be return
         let overviewData = []
 
-        let subProjects = []
+        let allProjects = []
         const allOverview = []
 
         // selecting the current project and subproject name
         let projectName = filter.projectName
-        let subProjectName = filter.subProjectName
+        // let subProjectName = filter.subProjectName
 
         // object to push on overviewData for total count row
         const totalData = {
-            subProject: 'Total',
+            project: 'Total',
             deliverables: 0,
             views: 0,
             reach: 0,
@@ -86,24 +84,21 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
             engagement: 0
         }
         // pushing the filtered projects into subproject as per filter
-        if (projectName === 'ALL' && subProjectName === 'ALL') {
-            subProjects = projects
-        } else if (subProjectName === 'ALL') {
-            const selectedProjectArray = projects.filter((item) => item.project === projectName)
-            subProjects = selectedProjectArray
+        if (projectName === 'ALL') {
+            allProjects = projects
         } else {
-            subProjects.push({ subProject: subProjectName, project: projectName })
+            allProjects.push({ project: projectName })
         }
 
         // fetching data from xlsx from each sheet from sheetname
 
-        for (let i = 0; i < subProjects.length; i++) {
-            const currentSheetName = subProjects[i].subProject
+        for (let i = 0; i < allProjects.length; i++) {
+            const currentSheetName = allProjects[i].project
             const currentSheet = workbook.getWorksheet(currentSheetName)
 
             const projectOverviewData = {
-                subProject: subProjects[i].subProject,
-                project: subProjects[i].project,
+                // subProject: projects[i].subProject,
+                project: allProjects[i].project,
                 deliverables: 0,
                 views: 0,
                 reach: 0,
@@ -138,9 +133,8 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
                     totalData.engagement += getCellValue(value.getCell(12).value)
                 }
             })
-            console.log(projectOverviewData, overviewData)
+
             overviewData.push(projectOverviewData)
-            console.log(overviewData)
         }
 
         // if ALL projects are selected then need to change the data formate
@@ -151,7 +145,7 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
             if (findDataindex === -1) {
                 allOverview.push({
                     project: overviewData[i].project,
-                    subProject: overviewData[i].subProject,
+                    // subProject: overviewData[i].subProject,
                     deliverables: overviewData[i].deliverables,
 
                     followers: overviewData[i].followers,
@@ -184,7 +178,7 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
         // totalData.engagementRate = (totalData.interactions / totalData.followers) * 100
 
         // changing data for ALL Project name
-        if (projectName === 'ALL' && subProjectName === 'ALL') {
+        if (projectName === 'ALL') {
             overviewData = allOverview
         }
         overviewData.push(totalData)
@@ -211,32 +205,29 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
         const growthData = []
         const pieChartData = []
 
-        let subProjects = []
+        let projects = []
         let insights = []
         let campaignNames = []
 
         let projectName = filter.projectName
-        let subProjectName = filter.subProjectName
-        let selectedCampaignMonth = filter.selectedCampaignMonth
 
-        let datesArray = []
-        if (filter.dates) {
-            const startDate = filter.dates.split('-')[0].trim()
-            const endDate = filter.dates.split('-')[1].trim()
+        let selectedCampaignName = filter.selectedCampaignName
 
-            const sDate = moment(startDate, 'DD/MM/YYYY')
-            const eDate = moment(endDate, 'DD/MM/YYYY')
+        let campaignArray = []
+        // if (filter.dates) {
+        //     const startDate = filter.dates.split('-')[0].trim()
+        //     const endDate = filter.dates.split('-')[1].trim()
 
-            datesArray = [...getDates(sDate, eDate)]
-        }
+        //     const sDate = moment(startDate, 'DD/MM/YYYY')
+        //     const eDate = moment(endDate, 'DD/MM/YYYY')
 
-        if (projectName === 'ALL' && subProjectName === 'ALL') {
-            subProjects = metaData
-        } else if (subProjectName === 'ALL') {
-            const selectedProjectArray = metaData.filter((item) => item.project === projectName)
-            subProjects = selectedProjectArray
+        //     datesArray = [...getDates(sDate, eDate)]
+        // }
+
+        if (projectName === 'ALL') {
+            projects = metaData
         } else {
-            subProjects.push({ subProject: subProjectName, project: projectName })
+            projects.push({ project: projectName })
         }
 
         const doCounting = (value, i, date, formattedDate) => {
@@ -265,7 +256,7 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
             pieChartData.push({
                 reelLink: value.getCell(6).value?.hyperlink || '#',
                 views: getCellValue(value.getCell(8).value),
-                project: subProjects[i].subProject
+                project: projects[i].project
             })
 
             // Detailed Data
@@ -288,8 +279,8 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
             // }
         }
         // fetching selected sheets data
-        for (let i = 0; i < subProjects.length; i++) {
-            const currentSheetName = subProjects[i].subProject
+        for (let i = 0; i < projects.length; i++) {
+            const currentSheetName = projects[i].project
 
             const currentSheet = workbook.getWorksheet(currentSheetName)
 
@@ -306,12 +297,8 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
                         campaignNames.push(campaignName)
                     }
 
-                    if (datesArray.length > 0) {
-                        if (datesArray.includes(formattedDate)) {
-                            doCounting(value, i, date, formattedDate)
-                        }
-                    } else if (campaignName && selectedCampaignMonth !== 'ALL') {
-                        if (campaignName === selectedCampaignMonth) {
+                    if (campaignName && selectedCampaignName !== 'ALL') {
+                        if (campaignName === selectedCampaignName) {
                             doCounting(value, i, date, formattedDate)
                         }
                     } else {
@@ -332,27 +319,6 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
 
         // Sort pie chart data by views
         const sortedByViewsArray = [...pieChartData].sort((a, b) => b.views - a.views).slice(0, 10)
-
-        // Sort Campaign Months
-        // campaignMonths.sort(function (a, b) {
-        //     var aParts = a.split(' ')
-        //     var bParts = b.split(' ')
-
-        //     // Compare years
-        //     var yearComparison = parseInt(aParts[1]) - parseInt(bParts[1])
-        //     if (yearComparison !== 0) {
-        //         return yearComparison
-        //     }
-
-        //     // If years are the same, compare months
-        //     var monthComparison = months[aParts[0]] - months[bParts[0]]
-        //     if (monthComparison !== 0) {
-        //         return monthComparison
-        //     }
-
-        //     // If months are the same, compare years as strings (lexicographically)
-        //     return aParts[1].localeCompare(bParts[1])
-        // })
 
         return { campaignNames, summaryData, insights, growthDataArray, sortedByViewsArray }
     } catch (err) {

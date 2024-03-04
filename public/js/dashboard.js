@@ -1,27 +1,7 @@
 // Chart.plugins.register(ChartDataLabels)
 $('#projects').val(selectedProject)
-$('#sub-projects').val(selectedSheetName)
-$('#campaign-month').val(selectedCampaignMonth)
 
-// Date Range Picker
-$('input[name="dates"]').daterangepicker({
-    autoUpdateInput: false,
-    minYear: 2023,
-    maxYear: 2024,
-    locale: {
-        format: 'DD/MM/YYYY',
-        seperator: '/',
-        cancelLabel: 'Clear'
-    }
-})
-
-$('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
-    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'))
-})
-
-$('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
-    $(this).val('')
-})
+$('#campaign-name').val(selectedCampaignName)
 
 // UPDATE SUB PROJECT
 document.getElementById('projects').addEventListener('change', updateSubProjects)
@@ -52,19 +32,19 @@ function updateSubProjects() {
 }
 
 //UPDATE PROJECT
-document.getElementById('sub-projects').addEventListener('change', updateProjects)
+// document.getElementById('sub-projects').addEventListener('change', updateProjects)
 
-function updateProjects() {
-    if (selectedSubProject !== 'ALL') {
-        var selectedSubProject = document.getElementById('sub-projects').value
-        var projectsSelect = document.getElementById('projects')
-        var filteredMetaData = metaData.find((item) => item.subProject === selectedSubProject)
-        projectsSelect.value = filteredMetaData.project
-    } else {
-        // Reset sub-projects if no project is selected
-        document.getElementById('sub-projects').innerHTML = '<option value="ALL">ALL</option>'
-    }
-}
+// function updateProjects() {
+//     if (selectedSubProject !== 'ALL') {
+//         var selectedSubProject = document.getElementById('sub-projects').value
+//         var projectsSelect = document.getElementById('projects')
+//         var filteredMetaData = metaData.find((item) => item.subProject === selectedSubProject)
+//         projectsSelect.value = filteredMetaData.project
+//     } else {
+//         // Reset sub-projects if no project is selected
+//         document.getElementById('sub-projects').innerHTML = '<option value="ALL">ALL</option>'
+//     }
+// }
 
 document.getElementById('btn-download').addEventListener('click', function () {
     // alert('After downloading the report, if you find that the report does not contain full information, then zoom out the screen and try again.')
