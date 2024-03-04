@@ -1,30 +1,15 @@
 const moment = require('moment')
 const { getCellValue } = require('./utilities')
 
-function getDates(startDate, endDate) {
-    var dates = []
-    var currentDate = startDate.clone()
-    while (currentDate <= endDate) {
-        dates.push(currentDate.format('DD/MM/YYYY'))
-        currentDate = currentDate.clone().add(1, 'days')
-    }
-    return dates
-}
-
-const months = {
-    January: 1,
-    February: 2,
-    March: 3,
-    April: 4,
-    May: 5,
-    June: 6,
-    July: 7,
-    August: 8,
-    September: 9,
-    October: 10,
-    November: 11,
-    December: 12
-}
+// function getDates(startDate, endDate) {
+//     var dates = []
+//     var currentDate = startDate.clone()
+//     while (currentDate <= endDate) {
+//         dates.push(currentDate.format('DD/MM/YYYY'))
+//         currentDate = currentDate.clone().add(1, 'days')
+//     }
+//     return dates
+// }
 
 exports.readMetaDataFromExcel = (workbook, sheetName) => {
     try {
@@ -40,7 +25,7 @@ exports.readMetaDataFromExcel = (workbook, sheetName) => {
         // Iterate through each row in the worksheet
         worksheet.eachRow((row, rowNumber) => {
             if (rowNumber > 1) {
-                const project = row.getCell(1).value.toString().trim()
+                const project = row.getCell(1).value
 
                 // Skip header row
                 metaData.push({
@@ -168,15 +153,6 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
             }
         }
 
-        // for (let i = 0; i < allOverview.length; i++) {
-        //     allOverview[i].engagementRate = (allOverview[i].interactions / allOverview[i].followers) * 100
-        // }
-        // for (let i = 0; i < overviewData.length; i++) {
-        //     overviewData[i].engagementRate = (overviewData[i].interactions / overviewData[i].followers) * 100
-        // }
-
-        // totalData.engagementRate = (totalData.interactions / totalData.followers) * 100
-
         // changing data for ALL Project name
         if (projectName === 'ALL') {
             overviewData = allOverview
@@ -212,17 +188,6 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
         let projectName = filter.projectName
 
         let selectedCampaignName = filter.selectedCampaignName
-
-        let campaignArray = []
-        // if (filter.dates) {
-        //     const startDate = filter.dates.split('-')[0].trim()
-        //     const endDate = filter.dates.split('-')[1].trim()
-
-        //     const sDate = moment(startDate, 'DD/MM/YYYY')
-        //     const eDate = moment(endDate, 'DD/MM/YYYY')
-
-        //     datesArray = [...getDates(sDate, eDate)]
-        // }
 
         if (projectName === 'ALL') {
             projects = metaData

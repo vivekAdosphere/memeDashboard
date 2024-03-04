@@ -44,7 +44,7 @@ exports.getCellValue = (cellValue) => {
         return 0
     }
     const parsedValue = Number(cellValue)
-    // console.log(cellValue)
+
     if (isNaN(parsedValue)) {
         return 0 // Raise an error
     }

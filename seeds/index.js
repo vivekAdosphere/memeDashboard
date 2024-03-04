@@ -22,60 +22,60 @@ module.exports = async () => {
         let credentials = ''
 
         const users = [
-            {
-                name: 'Sauraj',
-                email: 'sauraj@reelix.co',
-                password: generatePassword('Sauraj'),
-                role: 'admin'
-            },
-            {
-                name: 'Ayushmaan',
-                email: 'ayushmaan@reelix.co',
-                password: generatePassword('Ayushmaan'),
-                role: 'admin'
-            },
-            {
-                name: 'Shivani',
-                email: 'shivani@reelix.co',
-                password: generatePassword('Shivani'),
-                role: 'admin'
-            },
-            {
-                name: 'Rutwa',
-                email: 'rutwa@reelix.co',
-                password: generatePassword('Rutwa'),
-                role: 'admin'
-            },
-            {
-                name: 'Mrunali',
-                email: 'mrunali@reelix.co',
-                password: generatePassword('Mrunali'),
-                role: 'admin'
-            },
-            {
-                name: 'Chintan',
-                email: 'chintan@reelix.co',
-                password: generatePassword('Chintan'),
-                role: 'admin'
-            },
-            {
-                name: 'Vijay',
-                email: 'vijay@reelix.co',
-                password: generatePassword('Vijay'),
-                role: 'admin'
-            },
-            {
-                name: 'Abhijit',
-                email: 'abhijit@reelix.co',
-                password: generatePassword('Abhijit'),
-                role: 'admin'
-            },
-            {
-                name: 'Shikha',
-                email: 'shikha@reelix.co',
-                password: generatePassword('Shikha'),
-                role: 'admin'
-            },
+            // {
+            //     name: 'Sauraj',
+            //     email: 'sauraj@reelix.co',
+            //     password: generatePassword('Sauraj'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Ayushmaan',
+            //     email: 'ayushmaan@reelix.co',
+            //     password: generatePassword('Ayushmaan'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Shivani',
+            //     email: 'shivani@reelix.co',
+            //     password: generatePassword('Shivani'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Rutwa',
+            //     email: 'rutwa@reelix.co',
+            //     password: generatePassword('Rutwa'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Mrunali',
+            //     email: 'mrunali@reelix.co',
+            //     password: generatePassword('Mrunali'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Chintan',
+            //     email: 'chintan@reelix.co',
+            //     password: generatePassword('Chintan'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Vijay',
+            //     email: 'vijay@reelix.co',
+            //     password: generatePassword('Vijay'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Abhijit',
+            //     email: 'abhijit@reelix.co',
+            //     password: generatePassword('Abhijit'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Shikha',
+            //     email: 'shikha@reelix.co',
+            //     password: generatePassword('Shikha'),
+            //     role: 'admin'
+            // },
             {
                 name: 'Admin 1',
                 email: 'admin1@reelix.co',
@@ -100,30 +100,30 @@ module.exports = async () => {
                 password: generatePassword('Admin4'),
                 role: 'admin'
             },
-            {
-                name: 'Ados 1',
-                email: 'ados1@reelix.co',
-                password: generatePassword('Ados1'),
-                role: 'admin'
-            },
-            {
-                name: 'Ados 2',
-                email: 'ados2@reelix.co',
-                password: generatePassword('Ados2'),
-                role: 'admin'
-            },
-            {
-                name: 'Ados 3',
-                email: 'ados3@reelix.co',
-                password: generatePassword('Ados3'),
-                role: 'admin'
-            },
-            {
-                name: 'Ados 4',
-                email: 'ados4@reelix.co',
-                password: generatePassword('Ados4'),
-                role: 'admin'
-            },
+            // {
+            //     name: 'Ados 1',
+            //     email: 'ados1@reelix.co',
+            //     password: generatePassword('Ados1'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Ados 2',
+            //     email: 'ados2@reelix.co',
+            //     password: generatePassword('Ados2'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Ados 3',
+            //     email: 'ados3@reelix.co',
+            //     password: generatePassword('Ados3'),
+            //     role: 'admin'
+            // },
+            // {
+            //     name: 'Ados 4',
+            //     email: 'ados4@reelix.co',
+            //     password: generatePassword('Ados4'),
+            //     role: 'admin'
+            // },
             {
                 name: 'Super Admin',
                 email: 'sadmin@reelix.co',

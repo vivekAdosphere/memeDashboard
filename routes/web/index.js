@@ -53,8 +53,7 @@ router.post('/login', async (req, res, next) => {
                     return next(err)
                 }
                 req.session.selectedProject = 'ALL'
-                // req.session.selectedSheetName = 'ALL'
-                req.session.selectedCampaingName = 'ALL'
+                req.session.selectedCampaignName = 'ALL'
                 req.session.isDetailed = false
                 req.session.role = user.role
                 return res.redirect(`/dashboard/1`)
@@ -75,7 +74,7 @@ router.post('/dashboard', async (req, res) => {
     const dates = req.body.dates || ''
     const selectedProject = req.body.projects
     // const selectedSheetName = req.body['sub-projects']
-    const selectedCampaignName = req.body['campaign-month'] || 'ALL'
+    const selectedCampaignName = req.body['campaign-name'] || 'ALL'
 
     let isDetailed = Boolean(req.body.isDetailed)
     if (selectedProject === 'ALL') {
