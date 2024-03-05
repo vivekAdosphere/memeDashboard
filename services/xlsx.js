@@ -101,21 +101,21 @@ exports.readOverviewDataFromExcel = async (workbook, projects, isDetailed, filte
                     projectOverviewData.followers += getCellValue(value.getCell(4).value)
                     projectOverviewData.deliverables += value.getCell(2).value ? 1 : 0
 
-                    projectOverviewData.views += getCellValue(value.getCell(8).value)
-                    projectOverviewData.reach += getCellValue(value.getCell(9).value)
-                    projectOverviewData.likes += getCellValue(value.getCell(10).value)
-                    projectOverviewData.comments += getCellValue(value.getCell(11).value)
-                    projectOverviewData.engagement += getCellValue(value.getCell(12).value)
+                    projectOverviewData.views += getCellValue(value.getCell(9).value)
+                    projectOverviewData.reach += getCellValue(value.getCell(10).value)
+                    projectOverviewData.likes += getCellValue(value.getCell(11).value)
+                    projectOverviewData.comments += getCellValue(value.getCell(12).value)
+                    projectOverviewData.engagement += getCellValue(value.getCell(13).value)
 
                     // total data
 
                     totalData.deliverables += value.getCell(2).value ? 1 : 0
                     totalData.followers += getCellValue(value.getCell(4).value)
-                    totalData.views += getCellValue(value.getCell(8).value)
-                    totalData.reach += getCellValue(value.getCell(9).value)
-                    totalData.likes += getCellValue(value.getCell(10).value)
-                    totalData.comments += getCellValue(value.getCell(11).value)
-                    totalData.engagement += getCellValue(value.getCell(12).value)
+                    totalData.views += getCellValue(value.getCell(9).value)
+                    totalData.reach += getCellValue(value.getCell(10).value)
+                    totalData.likes += getCellValue(value.getCell(11).value)
+                    totalData.comments += getCellValue(value.getCell(12).value)
+                    totalData.engagement += getCellValue(value.getCell(13).value)
                 }
             })
 
@@ -201,26 +201,26 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
             summaryData.deliverables += value.getCell(2).value ? 1 : 0
             summaryData.followers += getCellValue(value.getCell(4).value)
 
-            summaryData.views += getCellValue(value.getCell(8).value)
-            summaryData.reach += getCellValue(value.getCell(9).value)
-            summaryData.likes += getCellValue(value.getCell(10).value)
-            summaryData.comments += getCellValue(value.getCell(11).value)
-            summaryData.engagement += getCellValue(value.getCell(12).value)
+            summaryData.views += getCellValue(value.getCell(9).value)
+            summaryData.reach += getCellValue(value.getCell(10).value)
+            summaryData.likes += getCellValue(value.getCell(11).value)
+            summaryData.comments += getCellValue(value.getCell(12).value)
+            summaryData.engagement += getCellValue(value.getCell(13).value)
 
             // Performance Growth Data
             if (date) {
                 const existingDataIndex = growthData.findIndex((item) => item.date === formattedDate)
                 if (existingDataIndex === -1) {
-                    growthData.push({ date: formattedDate, views: getCellValue(value.getCell(8).value) })
+                    growthData.push({ date: formattedDate, views: getCellValue(value.getCell(9).value) })
                 } else {
-                    growthData[existingDataIndex].views += getCellValue(value.getCell(8).value)
+                    growthData[existingDataIndex].views += getCellValue(value.getCell(9).value)
                 }
             }
 
             // Top Performing Post Pie Chart
             pieChartData.push({
-                reelLink: value.getCell(6).value?.hyperlink || '#',
-                views: getCellValue(value.getCell(8).value),
+                reelLink: value.getCell(7).value?.hyperlink || '#',
+                views: getCellValue(value.getCell(9).value),
                 project: projects[i].project
             })
 
@@ -232,13 +232,13 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
                     postingDate: formattedDate || '',
                     profileLink: value.getCell(3).value?.text || '',
                     followers: getCellValue(value.getCell(4).value),
-                    contentLink: value.getCell(6).value?.text || '',
-                    deliverable: value.getCell(7).value || '',
-                    views: getCellValue(value.getCell(8).value),
-                    reach: getCellValue(value.getCell(9).value),
-                    likes: getCellValue(value.getCell(10).value),
-                    comments: getCellValue(value.getCell(11).value),
-                    engagement: getCellValue(value.getCell(12).value)
+                    contentLink: value.getCell(7).value?.text || '',
+                    deliverable: value.getCell(8).value || '',
+                    views: getCellValue(value.getCell(9).value),
+                    reach: getCellValue(value.getCell(10).value),
+                    likes: getCellValue(value.getCell(11).value),
+                    comments: getCellValue(value.getCell(12).value),
+                    engagement: getCellValue(value.getCell(13).value)
                 })
             }
             // }
@@ -254,10 +254,10 @@ exports.readInsightsDataFromExcel = async (workbook, filter, isDetailed, metaDat
                     // for (let j = 0; j < rows.length; j++) {
                     const value = row
 
-                    const date = value.getCell(5).value // Assuming posting date is in column 'J'
+                    const date = value.getCell(6).value // Assuming posting date is in column 'J'
                     const formattedDate = typeof date !== 'string' ? moment(date).format('DD/MM/YYYY') : date
 
-                    const campaignName = value.getCell(13).value // Assuming posting date is in column 'M
+                    const campaignName = value.getCell(5).value // Assuming posting date is in column 'M
                     if (campaignName && !campaignNames.includes(campaignName)) {
                         campaignNames.push(campaignName)
                     }
